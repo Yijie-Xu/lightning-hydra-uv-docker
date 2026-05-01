@@ -1,0 +1,18 @@
+[project]
+name = "mypackage"
+version = "0.1.0"
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+  "lightning>=2.5",
+  "torchmetrics>=0.11.4",
+  "hydra-core==1.3.2",
+  "hydra-colorlog==1.2.0",
+  "hydra-optuna-sweeper==1.2.0",
+  "rootutils",
+  "rich",
+]
+
+[build-system]
+requires = ["uv_build>=0.11.8,<0.12"]
+build-backend = "uv_build"
