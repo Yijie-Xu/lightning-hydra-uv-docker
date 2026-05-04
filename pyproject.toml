@@ -16,7 +16,7 @@ dependencies = [
   # logger dependencies
   "wandb",
 
-  # task runner
+  # task runner dependencies
   "poethepoet",
 ]
 
