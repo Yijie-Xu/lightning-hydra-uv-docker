@@ -14,6 +14,8 @@ ENV TORCH_FORCE_NO_WEIGHTS_ONLY_LOAD=1
 COPY pyproject.toml README.md ./
 COPY .project-root ./
 COPY configs ./configs
+COPY notebooks ./notebooks
+COPY scripts ./scripts
 COPY src ./src
 
 RUN --mount=type=cache,target=/root/.cache/uv \
