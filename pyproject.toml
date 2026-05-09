@@ -31,3 +31,7 @@ cmd = "python -m mypackage.train"
 [tool.poe.tasks.eval]
 help = "Evaluate the model."
 cmd = "python -m mypackage.eval"
+
+[tool.poe.tasks.smoke]
+help = "Check Python, Pytorch, CUDA."
+cmd = "python -c \"import torch; print('cuda=', torch.cuda.is_available()); print('devices=', torch.cuda.device_count())\""
