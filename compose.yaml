@@ -1,0 +1,19 @@
+name: lightning-hydra-uv-docker
+
+x-app: &app
+  image: ${IMAGE:-lightning-hydra-uv-docker}
+  build:
+    context: .
+    dockerfile: Dockerfile
+
+  working_dir: /app
+  init: true
+  shm_size: ${SHM_SIZE:-8g}
+
+  ulimits:
+    memlock: -1
+    stack: 67108864
+
+  env_file:
+    - path: ./.env
+      required: false
