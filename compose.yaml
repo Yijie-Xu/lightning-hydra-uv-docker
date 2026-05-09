@@ -17,3 +17,39 @@ x-app: &app
   env_file:
     - path: ./.env
       required: false
+
+  environment:
+    PROJECT_ROOT: /app
+    PYTHONUNBUFFERED: "1"
+    NVIDIA_VISIBLE_DEVICES: ${NVIDIA_VISIBLE_DEVICES:-all}
+    NVIDIA_DRIVER_CAPABILITIES: ${NVIDIA_DRIVER_CAPABILITIES:-compute,utility}
+
+  volumes:
+    - ./data:/app/data
+    - ./logs:/app/logs
+    - ./src:/app/src
+    - ./configs:/app/configs
+    - ./scripts:/app/scripts
+    - ./notebooks:/app/notebooks
+    - uv-cache:/root/.cache/uv
+
+  stdin_open: true
+  tty: true
+  command: bash
+
+services:
+  cpu:
+    <<: *app
+
+  gpu:
+    <<: *app
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: all
+              capabilities: [gpu]
+
+volumes:
+  uv-cache:
