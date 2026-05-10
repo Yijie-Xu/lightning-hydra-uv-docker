@@ -3,9 +3,10 @@
 ARG BASE_IMAGE=nvcr.io/nvidia/pytorch:25.08-py3
 ARG UV_IMAGE=ghcr.io/astral-sh/uv:latest
 
+FROM ${UV_IMAGE} AS uv
 FROM ${BASE_IMAGE}
 
-COPY --from=${UV_IMAGE} /uv /uvx /bin/
+COPY --from=uv /uv /uvx /bin/
 
 WORKDIR /app
 
